@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{ object.first_name }} {{ object.last_name }}</h1>
+                        <span class="color-text-a">Agent Immobiliari</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"></a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ Agent Single Star /-->
+    <section class="agent-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="agent-avatar-box">
+                                <img src="{{ object.image.url }}" alt="" class="agent-avatar img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-md-5 section-md-t3">
+                            <div class="agent-info-box">
+                                <div class="agent-title">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">{{ object.first_name }}
+                                            <br> {{ object.last_name }}</h3>
+                                    </div>
+                                </div>
+                                <div class="agent-content mb-3">
+                                    <p class="content-d color-text-a">
+                                        {{ object.bio }}
+                                    </p>
+                                    <div class="info-agents color-a">
+                                        <p>
+                                            <strong>Phone: </strong>
+                                            <span class="color-text-a"> {{ object.phone }}</span>
+                                        </p>
+                                        <p>
+                                            <strong>Email: </strong>
+                                            <span class="color-text-a"> {{ object.email }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="socials-footer">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.whatsapp }}" class="link-one">
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.telegram }}" class="link-one">
+                                                <i class="fa fa-telegram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.instagram }}" class="link-one">
+                                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 section-t8">
+                    <div class="title-box-d">
+                        <h3 class="title-d">My Properties (6)</h3>
+                    </div>
+                </div>
+                <div class="row property-grid grid">
+                    <div class="col-sm-12">
+                        <div class="grid-option">
+                            <form>
+                                <select class="custom-select">
+                                    <option selected>All</option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    {% for property in object.properties.all %}
+                        <div class="col-md-4">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+                                    <img src="{{ property.images.all.first.image.url }}" alt="" class="img-a img-fluid">
+                                </div>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a href="{{ property.get_absolute_url }}">{{ property.title }}
+                                                    <br/> </a>
+                                            </h2>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a">{{ property.status }}| $ {{ property.cost }}</span>
+                                            </div>
+                                            <a href="{{ property.get_absolute_url }}" class="link-a">Click here to view
+                                                <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Area</h4>
+                                                    <span>{{ property.area }}
+                                                        <sup>metr</sup>
+                                                    </span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Beds</h4>
+                                                    {% if property.beds == 0 %}
+                                                        <span class="container"><b>X</b></span>
+                                                    {% else %}
+                                                        <span>{{ property.beds }}</span>
+                                                    {% endif %}
+
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Elevator</h4>
+                                                    {% if property.elevator %}
+                                                        <span class="container"><b>✓</b></span>
+                                                    {% else %}
+                                                        <span class="container"><b>X</b></span>
+                                                    {% endif %}
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Parking</h4>
+                                                    {% if property.parking %}
+                                                        <span class="container"><b>✓</b></span>
+                                                    {% else %}
+                                                        <span class="container"><b>X</b></span>
+                                                    {% endif %}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Agent Single End /-->
+
+{% endblock %}

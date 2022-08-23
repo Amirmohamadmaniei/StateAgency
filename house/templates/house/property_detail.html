@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{ object.title }}</h1>
+                        <span class="color-text-a">{{ object.city }} , for <b>{{ object.status }}</b></span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"></a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ Property Single Star /-->
+    <section class="property-single nav-arrow-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
+                        {% for image in object.images.all %}
+                            <div class="carousel-item-b">
+                                <img style="width: 500px; height: 500px;" src="{{ image.image.url }}" alt="">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="col-md-5 col-lg-4">
+                            <div class="property-price d-flex justify-content-center foo">
+                                <div class="card-header-c d-flex">
+                                    <div class="card-box-ico">
+                                        <span class="ion-money">$</span>
+                                    </div>
+                                    <div class="card-title-c align-self-center">
+                                        <h5 class="title-c">{{ object.cost }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-summary">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="title-box-d section-t4">
+                                            <h3 class="title-d">Quick Summary</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="summary-list">
+                                    <ul class="list">
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Property Type:</strong>
+                                            <span>House</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Type:</strong>
+                                            <span>{{ object.type }}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Status:</strong>
+                                            <span>{{ object.status }}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>yeare created:</strong>
+                                            <span>{{ object.year_created }}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Area:</strong>
+                                            <span>{{ object.area }}
+                                                 <sup>metr</sup>
+                                            </span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>floor:</strong>
+                                            <span>{{ object.floor }}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Beds:</strong>
+                                            <span>{{ object.beds }}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Parking:</strong>
+                                            {% if property.parking %}
+                                                <span><b>✓</b></span>
+                                            {% else %}
+                                                <span><b>X</b></span>
+                                            {% endif %}
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Elevator:</strong>
+                                            {% if property.elevator %}
+                                                <span><b>✓</b></span>
+                                            {% else %}
+                                                <span><b>X</b></span>
+                                            {% endif %}
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Warehouse:</strong>
+                                            {% if property.warehouse %}
+                                                <span><b>✓</b></span>
+                                            {% else %}
+                                                <span><b>X</b></span>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="property-summary">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="title-box-d section-t4">
+                                            <h3 class="title-d">Address</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="summary-list">
+                                    <ul class="list">
+                                        <span>{{ object.address }}</span>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lg-7 section-md-t3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Description</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-description">
+                                <p class="description color-text-a">
+                                    {{ object.description }}
+                                </p>
+                            </div>
+                            <div class="row section-t3">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Amenities</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="amenities-list color-text-a">
+                                <ul class="list-a no-margin">
+                                    {% for amenities in object.amenities.all %}
+                                        <li>{{ amenities }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10 offset-md-1">
+                    <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-video-tab" data-toggle="pill"
+                               href="#pills-video"
+                               role="tab"
+                               aria-controls="pills-video" aria-selected="true">Video</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-plans-tab" data-toggle="pill" href="#pills-plans"
+                               role="tab"
+                               aria-controls="pills-plans"
+                               aria-selected="false">Floor Plans</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map"
+                               role="tab"
+                               aria-controls="pills-map"
+                               aria-selected="false">Ubication</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-video" role="tabpanel"
+                             aria-labelledby="pills-video-tab">
+
+                        </div>
+                        <div class="tab-pane fade" id="pills-plans" role="tabpanel"
+                             aria-labelledby="pills-plans-tab">
+                            <img src="{% static 'img/plan2.jpg' %}" alt="" class="img-fluid">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row section-t3">
+                        <div class="col-sm-12">
+                            <div class="title-box-d">
+                                <h3 class="title-d">Contact Agent</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <img src="{{ object.agent.image.url }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="property-agent"><a href="{{ object.agent.get_absolute_url }}">
+                                <h4 class="title-agent">{{ object.agent.first_name }}
+                                    <br/> {{ object.agent.last_name }} </h4></a>
+                                <p class="color-text-a">
+                                    {{ object.agent.bio }}
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Mobile:</strong>
+                                        <span class="color-text-a">{{ object.agent.phone }}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Email:</strong>
+                                        <span class="color-text-a">{{ object.agent.email }}</span>
+                                    </li>
+                                </ul>
+                                <div class="socials-a">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.agent.whatsapp }}">
+                                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.agent.telegram }}">
+                                                <i class="fa fa-telegram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="{{ object.agent.instagram }}">
+                                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="property-contact">
+                                {% if request.user.is_authenticated %}
+                                    <form class="form-a" method="post">
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-12 mb-1">
+                                                <div class="form-group">
+                                                    {{ form.phone }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-1">
+                                                <div class="form-group">
+                                                    {{ form.email }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-1">
+                                                <div class="form-group">
+                                                    {{ form.message }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-a">Send Message</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--/ Property Single End /-->
+
+{% endblock %}

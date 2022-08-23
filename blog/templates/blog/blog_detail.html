@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{ object.title }}</h1>
+                        <span class="color-text-a">News Single.</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"></a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ News Single Star /-->
+    <section class="news-single nav-arrow-b">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="news-img-box">
+                        <img src="{{ object.image.url }}" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <div class="post-information">
+                        <ul class="list-inline text-center color-a">
+                            <li class="list-inline-item mr-2">
+                                <strong>Views: </strong>
+                                <span class="color-text-a">{{ object.view }}</span>
+                            </li>
+                            <li class="list-inline-item mr-2">
+                                <strong>Author: </strong>
+                                <span class="color-text-a">{{ object.author.first_name }} {{ object.author.last_name }}</span>
+                            </li>
+                            <li class="list-inline-item mr-2">
+                                <strong>Category: </strong>
+                                <span class="color-text-a">{{ object.category.title }}</span>
+                            </li>
+                            <li class="list-inline-item">
+                                <strong>Date: </strong>
+                                <span class="color-text-a">{{ object.get_date_created }}
+                                     at {{ object.created.time.hour }}:{{ object.created.time.minute }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="post-content color-text-a">
+                        <p class="post-intro">
+                            {{ object.description }}
+                        </p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-share">
+                            <span>Share: </span>
+                            <ul class="list-inline socials">
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#">
+                                        <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+                    <div class="title-box-d">
+                        <h3 class="title-d">Comments ({{ object.comments.all.count }})</h3>
+                    </div>
+                    <div class="box-comments">
+                        <ul class="list-comments">
+                            {% for comment in object.comments.all %}
+                                {% if not comment.pattern %}
+                                    <li>
+                                        <div class="comment-avatar">
+                                            {% if comment.user.image %}
+                                                <img src="{{ comment.user.image.url }}" alt="">
+                                            {% else %}
+                                                <img src="{% static 'img/person.png' %}" alt="">
+                                            {% endif %}
+                                        </div>
+                                        <div class="comment-details">
+                                            <h4 class="comment-author">{{ comment.user.first_name }} {{ comment.user.last_name }}</h4>
+                                            <span>{{ blog.created.date.day }} {{ blog.created.date.month }}. {{ blog.created.date.year }}</span>
+                                            <p class="comment-description">
+                                                {{ comment.description }}
+                                            </p>
+                                            <a href="3">Reply</a>
+                                        </div>
+                                    </li>
+
+                                    {% for reply in comment.replies.all %}
+                                        <li class="comment-children">
+                                            <div class="comment-avatar">
+                                                {% if comment.user.image %}
+                                                    <img src="{{ comment.user.image.url }}" alt="">
+                                                {% else %}
+                                                    <img src="{% static 'img/person.png' %}" alt="">
+                                                {% endif %}
+                                            </div>
+                                            <div class="comment-details">
+                                                <h4 class="comment-author">{{ reply.user.first_name }} {{ reply.user.last_name }}</h4>
+                                                <span>18 Sep 2017</span>
+                                                <p class="comment-description">
+                                                    {{ reply.description }}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="form-comments">
+                        <div class="title-box-d">
+                            <h3 class="title-d"> Leave a Reply</h3>
+                        </div>
+                        <form class="form-a" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="textMessage">Enter message</label>
+                                        {{ form.description }}
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="pattern11111" type="text" value="3">
+                                    </div>
+                                    {#                                    {{ form.pattern }}#}
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-a">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ News Single End /-->
+{% endblock %}

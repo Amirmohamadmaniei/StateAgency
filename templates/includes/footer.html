@@ -1,0 +1,80 @@
+{% load static %}
+
+<!--/ footer Star /-->
+<section class="section-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="widget-a">
+
+                    <div class="w-footer-a">
+                        <ul class="list-unstyled">
+                            <li class="color-a">
+                                <span class="color-text-a">Phone .</span> {{ social_network.email }}
+                            </li>
+                            <li class="color-a">
+                                <span class="color-text-a">Email .</span> {{ social_network.tel }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="nav-footer">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="{% url 'home:home' %}">Home</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'home:about' %}">About</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'property:list_property' %}">Property</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'agent:list_agent' %}">Agent</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'blog:list_blog' %}">Blog</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% url 'home:contact' %}">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="socials-a">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fa fa-telegram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyright-footer">
+                    <p class="copyright color-text-a">
+                        &copy; Copyright
+                        <span class="color-a">EstateAgency</span> All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--/ Footer End /-->

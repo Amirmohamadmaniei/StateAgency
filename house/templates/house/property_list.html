@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <!--/ Intro Single star /-->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Our Amazing Properties</h1>
+                        <span class="color-text-a">Grid Properties</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Intro Single End /-->
+
+    <!--/ Property Grid Star /-->
+    <section class="property-grid grid">
+        <div class="container">
+            <div class="row">
+
+                {% for property in object_list %}
+                    <div class="col-md-4">
+                        <div class="card-box-a card-shadow">
+                            <div class="img-box-a">
+                                <img src="{{ property.images.all.first.image.url }}" alt="" class="img-a img-fluid">
+                            </div>
+                            <div class="card-overlay">
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="{{ property.get_absolute_url }}"> {{ property.title }} </a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            <span class="price-a">{{ property.status }} | $ {{ property.cost }}</span>
+                                        </div>
+                                        <a href="{{ property.get_absolute_url }}" class="link-a">Click
+                                            here to view
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Area</h4>
+                                                <span>{{ property.area }}
+                                                    <sup>metr</sup>
+                                                </span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Beds</h4>
+                                                {% if property.beds == 0 %}
+                                                    <span class="container"><b>X</b></span>
+                                                {% else %}
+                                                    <span>{{ property.beds }}</span>
+                                                {% endif %}
+
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Elevator</h4>
+                                                {% if property.elevator %}
+                                                    <span class="container"><b>✓</b></span>
+                                                {% else %}
+                                                    <span class="container"><b>X</b></span>
+                                                {% endif %}
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Parking</h4>
+                                                {% if property.parking %}
+                                                    <span class="container"><b>✓</b></span>
+                                                {% else %}
+                                                    <span class="container"><b>X</b></span>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <nav class="pagination-a">
+                        {% if is_paginated %}
+                            <ul class="pagination justify-content-end">
+
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                           tabindex="-1">
+                                            <span class="ion-ios-arrow-back"></span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% for page in page_obj.paginator.page_range %}
+                                    <li class="page-item {% if page_obj.number == page %} active {% endif %}">
+                                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item next">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                            <span class="ion-ios-arrow-forward"></span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Property Grid End /-->
+
+{% endblock %}
