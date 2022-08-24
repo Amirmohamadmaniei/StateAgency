@@ -43,13 +43,10 @@ def start_with_09(value):
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}), validators=[start_with_09,
-                                                                                                                         validators.MaxLengthValidator(11)
-                                                                                                                         validators.MinLengthValidator(11)])
+    phone = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone'}),
+                            validators=[start_with_09, validators.MaxLengthValidator(11),
+                                        validators.MinLengthValidator(11)])
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
-
-
-
 
     def clean(self):
         phone = self.cleaned_data.get('phone')
