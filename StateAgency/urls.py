@@ -25,4 +25,5 @@ urlpatterns = [
     path('property/', include('house.urls')),
     path('agent/', include('agent.urls')),
     path('blog/', include('blog.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
